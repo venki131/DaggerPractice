@@ -1,4 +1,7 @@
-package com.example.daggerpractice.practice;
+package com.example.daggerpractice.practice.modules;
+
+import com.example.daggerpractice.practice.model.DieselEngine;
+import com.example.daggerpractice.practice.Engine;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,7 +16,7 @@ public class DieselEngineModule {
     }
 
     @Provides
-    Engine provideEngine(){
+    public Engine provideEngine(){
         return new DieselEngine(horsePower);
     }
 }

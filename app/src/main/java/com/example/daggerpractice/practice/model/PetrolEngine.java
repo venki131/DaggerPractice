@@ -1,9 +1,12 @@
-package com.example.daggerpractice.practice;
+package com.example.daggerpractice.practice.model;
 
 import android.util.Log;
 
+import com.example.daggerpractice.practice.Engine;
+
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 public class PetrolEngine implements Engine {
     private static final String TAG = "Car";

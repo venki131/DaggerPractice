@@ -1,4 +1,4 @@
-package com.example.daggerpractice.practice;
+package com.example.daggerpractice.practice.model;
 
 import javax.inject.Inject;
 

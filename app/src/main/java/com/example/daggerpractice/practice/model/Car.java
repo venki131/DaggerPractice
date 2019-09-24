@@ -1,9 +1,13 @@
-package com.example.daggerpractice.practice;
+package com.example.daggerpractice.practice.model;
 
 import android.util.Log;
 
+import com.example.daggerpractice.practice.Engine;
+import com.example.daggerpractice.practice.scope.PerActivity;
+
 import javax.inject.Inject;
 
+@PerActivity
 public class Car {
     private static final String TAG = "Car";
     private Engine engine;

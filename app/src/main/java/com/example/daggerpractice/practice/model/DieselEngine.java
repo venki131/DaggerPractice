@@ -1,6 +1,8 @@
-package com.example.daggerpractice.practice;
+package com.example.daggerpractice.practice.model;
 
 import android.util.Log;
+
+import com.example.daggerpractice.practice.Engine;
 
 public class DieselEngine implements Engine {
     private static final String TAG = "Car";
