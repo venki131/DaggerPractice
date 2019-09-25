@@ -1,7 +1,6 @@
 package com.example.daggerpractice.dependency_injection;
 
 import android.app.Application;
-
 import com.example.daggerpractice.BaseApplication;
 
 import dagger.BindsInstance;
@@ -11,7 +10,9 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
 @Component(
         modules = {
-                AndroidSupportInjectionModule.class
+                AndroidSupportInjectionModule.class,
+                ActivityBuildersModule.class,
+                AppModule.class
         }
 )
 public interface AppComponent extends AndroidInjector<BaseApplication> {
