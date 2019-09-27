@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -31,29 +33,54 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
     RequestManager requestManager;
     private AuthViewModel authViewModel;
     private EditText userId;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-        setLogo();
 
         userId = findViewById(R.id.user_id_input);
+        progressBar = findViewById(R.id.progress_bar);
 
         findViewById(R.id.login_button).setOnClickListener(this);
         authViewModel = ViewModelProviders.of(this, providerFactory).get(AuthViewModel.class);
+        setLogo();
         subscribeObservers();
     }
 
     private void subscribeObservers() {
-        authViewModel.observeUser().observe(this, new Observer<User>() {
+        authViewModel.observeUser().observe(this, new Observer<AuthResource<User>>() {
             @Override
-            public void onChanged(User user) {
-                if (user != null) {
-                    Log.d(TAG, "onChanged: " + user.getEmail());
+            public void onChanged(AuthResource<User> userAuthResource) {
+                if (userAuthResource != null) {
+                    switch (userAuthResource.status) {
+                        case AUTHENTICATED:
+                            showProgressBar(false);
+                            Log.d(TAG, "onChanged: Login success " + userAuthResource.data.getEmail());
+                            break;
+                        case LOADING:
+                            showProgressBar(true);
+                            break;
+                        case ERROR:
+                            showProgressBar(false);
+                            Toast.makeText(AuthActivity.this, userAuthResource.message +
+                                    "\n Enter a number between 1 and 10.", Toast.LENGTH_SHORT).show();
+                            break;
+                        case NOT_AUTHENTICATED:
+                            showProgressBar(false);
+                            break;
+                    }
                 }
             }
         });
+    }
+
+    private void showProgressBar(boolean isVisible) {
+        if (isVisible)
+            progressBar.setVisibility(View.VISIBLE);
+        else
+            progressBar.setVisibility(View.GONE);
     }
 
     private void setLogo() {

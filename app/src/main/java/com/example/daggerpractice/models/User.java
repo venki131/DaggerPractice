@@ -7,7 +7,7 @@ public class User {
 
     @SerializedName("id")
     @Expose
-    private String id;
+    private Integer id;
 
     @SerializedName("userName")
     @Expose
@@ -21,7 +21,7 @@ public class User {
     @Expose
     private String website;
 
-    public User(String id, String userName, String email, String website) {
+    public User(Integer id, String userName, String email, String website) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -31,11 +31,11 @@ public class User {
     public User() {
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
