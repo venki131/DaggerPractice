@@ -1,6 +1,7 @@
 package com.example.daggerpractice.dependency_injection;
 
 import android.app.Application;
+
 import com.example.daggerpractice.BaseApplication;
 import com.example.daggerpractice.SessionManager;
 
@@ -17,7 +18,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
                 AndroidSupportInjectionModule.class,
                 ActivityBuildersModule.class,
                 AppModule.class,
-                ViewModelFactoryModule.class
+                ViewModelFactoryModule.class,
         }
 )
 public interface AppComponent extends AndroidInjector<BaseApplication> {
@@ -25,7 +26,7 @@ public interface AppComponent extends AndroidInjector<BaseApplication> {
     SessionManager sessionManager();
 
     @Component.Builder
-    interface Builder {
+    interface Builder{
 
         @BindsInstance
         Builder application(Application application);

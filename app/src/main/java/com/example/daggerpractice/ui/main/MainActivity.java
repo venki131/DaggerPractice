@@ -1,8 +1,8 @@
 package com.example.daggerpractice.ui.main;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -15,11 +15,25 @@ public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toast.makeText(this, "main activity", Toast.LENGTH_SHORT).show();
+    }
 
-        Log.d(TAG, "onCreate: in main act");
-        Toast.makeText(this, "Logged into main activity", Toast.LENGTH_SHORT).show();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                sessionManager.logout();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
