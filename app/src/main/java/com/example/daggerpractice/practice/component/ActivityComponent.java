@@ -1,6 +1,6 @@
 package com.example.daggerpractice.practice.component;
 
-import com.example.daggerpractice.practice.activity.MainActivity;
+import com.example.daggerpractice.practice.activity.Main2Activity;
 import com.example.daggerpractice.practice.model.Car;
 import com.example.daggerpractice.practice.scope.PerActivity;
 import com.example.daggerpractice.practice.modules.PetrolEngineModule;
@@ -17,7 +17,7 @@ public interface ActivityComponent {
 
     Car getCar();
 
-    void inject(MainActivity mainActivity);
+    void inject(Main2Activity main2Activity);
 
     @Component.Builder
     interface Builder {

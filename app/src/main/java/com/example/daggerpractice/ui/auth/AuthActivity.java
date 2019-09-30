@@ -1,5 +1,6 @@
 package com.example.daggerpractice.ui.auth;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.bumptech.glide.RequestManager;
 import com.example.daggerpractice.R;
 import com.example.daggerpractice.models.User;
+import com.example.daggerpractice.ui.main.MainActivity;
 import com.example.daggerpractice.viewmodels.ViewModelProviderFactory;
 
 import javax.inject.Inject;
@@ -50,7 +52,7 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
     }
 
     private void subscribeObservers() {
-        authViewModel.observeUser().observe(this, new Observer<AuthResource<User>>() {
+        authViewModel.observeAuthState().observe(this, new Observer<AuthResource<User>>() {
             @Override
             public void onChanged(AuthResource<User> userAuthResource) {
                 if (userAuthResource != null) {
@@ -58,6 +60,7 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
                         case AUTHENTICATED:
                             showProgressBar(false);
                             Log.d(TAG, "onChanged: Login success " + userAuthResource.data.getEmail());
+                            onLoginSuccess();
                             break;
                         case LOADING:
                             showProgressBar(true);
@@ -101,5 +104,10 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
     private void attemptLogin() {
         if (!TextUtils.isEmpty(userId.getText().toString()))
             authViewModel.authenticateWithId(Integer.parseInt(userId.getText().toString()));
+    }
+
+    private void onLoginSuccess() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

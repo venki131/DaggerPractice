@@ -12,7 +12,7 @@ import com.example.daggerpractice.practice.model.Car;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity {
 
     @Inject
     public Car car;
