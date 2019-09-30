@@ -25,8 +25,6 @@ public class AuthViewModel extends ViewModel {
 
     private SessionManager sessionManager;
 
-    private MediatorLiveData<AuthResource<User>> authUser = new MediatorLiveData<>();
-
     @Inject
     public AuthViewModel(AuthApi authApi, SessionManager sessionManager) {
         this.authApi = authApi;
