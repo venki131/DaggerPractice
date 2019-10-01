@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.example.daggerpractice.BaseActivity;
 import com.example.daggerpractice.R;
+import com.example.daggerpractice.ui.main.posts.PostsFragment;
 import com.example.daggerpractice.ui.main.profile.ProfileFragment;
 
 public class MainActivity extends BaseActivity {

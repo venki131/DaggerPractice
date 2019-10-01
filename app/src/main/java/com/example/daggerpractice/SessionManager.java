@@ -30,6 +30,8 @@ public class SessionManager {
                     cachedUser.removeSource(source);
                 }
             });
+        } else{
+            Log.d(TAG, "authenticateWithId: previous session detected. Retrieving user from cache.");
         }
     }
 
