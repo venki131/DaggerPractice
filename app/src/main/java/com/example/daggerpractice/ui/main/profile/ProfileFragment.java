@@ -48,6 +48,7 @@ public class ProfileFragment extends DaggerFragment  {
         website = view.findViewById(R.id.website);
 
         viewModel = ViewModelProviders.of(this, providerFactory).get(ProfileViewModel.class);
+
         subscribeObservers();
     }
 
